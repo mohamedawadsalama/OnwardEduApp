@@ -1,35 +1,54 @@
 import { Tabs } from 'expo-router';
-import React from 'react';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+
+
+
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-    </Tabs>
+    
+      
+        <Tabs
+          screenOptions={{
+            tabBarActiveTintColor: '#ebe95c',
+          }}
+        >
+          <Tabs.Screen
+            name="home"
+            options={{
+              title: 'Home',
+              tabBarIcon: ({ color, focused }) => (
+                <Ionicons name={focused ? 'home-sharp' : 'home-outline'} color={color} size={24} />
+              ),
+              
+              
+            }}
+            
+          />
+          <Tabs.Screen
+            name="about"
+            options={{
+              title: 'About',
+              tabBarIcon: ({ color, focused }) => (
+                <Ionicons name={focused ? 'information-circle' : 'information-circle-outline'} color={color} size={24}/>
+              ),
+            }}
+          />
+          <Tabs.Screen
+            name="features"
+            options={{
+              title: 'Features',
+              tabBarIcon: ({ color, focused }) => (
+                <MaterialCommunityIcons name={focused ? "book-education" :"book-education-outline"} size={24} color={color} />
+              ),
+            }}
+          />
+          
+          
+        </Tabs>
+     
+    
   );
 }
